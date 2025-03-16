@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/vote.css">
+    <script src="/static/js/vote.js"> </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Candidates List</h2>
+        <table class="table table-bordered table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Party</th>
+                    <th>Position</th>
+                    <th>Election Sign</th>
+                    <th>Info</th>
+                    <th>Vote</th>
+                </tr>
+            </thead>
+            <tbody id="candidates-list">
+                <!-- Candidate rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Candidate Details Modal -->
+    <div class="modal fade" id="candidateModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Candidate Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="candidate-photo" class="modal-img">
+                    <h3 id="candidate-name"></h3>
+                    <p><strong>Party:</strong> <span id="candidate-party"></span></p>
+                    <p><strong>Age:</strong> <span id="candidate-age"></span></p>
+                    <p><strong>Position:</strong> <span id="candidate-position"></span></p>
+                    <p><strong>Bio:</strong> <span id="candidate-bio"></span></p>
+                    <img id="candidate-sign" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <input type="hidden" value="{{ user }}" id="user_id">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
