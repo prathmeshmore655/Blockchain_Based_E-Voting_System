@@ -13,7 +13,9 @@ urlpatterns = [
     path('vote' , views.vote_page , name = "vote_page"),
     path('elections' , views.elections_page , name = "elections_page") ,
     path('dashboard' , views.dashboard_page , name = "dashboard_page"),
-    
+    path('working' , views.working_page , name = "working_page"),
+    path('contact' , views.contact_us_page , name = "contact_us_page") , 
+    path('user_login' , views.user_login , name = "user_login")
 ]
 
 

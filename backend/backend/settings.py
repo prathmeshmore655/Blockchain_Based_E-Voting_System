@@ -32,25 +32,25 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework' , 
-    'corsheaders' , 
+    'rest_framework',  
     'App'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',  # ✅ Required for Admin
     'django.contrib.messages.middleware.MessageMiddleware',      # ✅ Required for Admin
-    'corsheaders.middleware.CorsMiddleware',  # If you're using CORS
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -151,5 +151,7 @@ REST_FRAMEWORK = {
 
 
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SAMESITE = "Lax"  # or "None" if different origins
+SESSION_COOKIE_SECURE = False  # True for HTTPS
+SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript from accessing it
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Store sessions in DB

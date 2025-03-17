@@ -1,0 +1,108 @@
+/* Hero Section */
+.hero-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+/* Timeline Container */
+.timeline-container {
+    position: relative;
+    padding: 50px 0;
+    background: #f8f9fa;
+}
+
+/* Vertical Line */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: #007bff;
+    transform: translateX(-50%);
+}
+
+/* Timeline Items */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: auto;
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 20px;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Positioning Left and Right */
+.timeline-item.left {
+    right:  5.5%;
+    text-align: right;
+    padding-right: 40px;
+}
+
+.timeline-item.right {
+    left: 55.5%;
+    text-align: left;
+    padding-left: 40px;
+}
+
+/* Animation */
+.timeline-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Branch Lines */
+.timeline-branch {
+    position: absolute;
+    width: 50px;
+    height: 6px;
+    background: #007bff;
+    top: 20px;
+}
+
+.timeline-item.left .timeline-branch {
+    right: -50px;
+}
+
+.timeline-item.right .timeline-branch {
+    left: -50px;
+}
+
+
+
+
+
+
+
+.navbar {
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    margin-left: 10px;
+}
+
+.nav-link:hover {
+    color: #ffc107 !important; /* Highlight color */
+}
+
+.btn-outline-light {
+    border-radius: 20px;
+    padding: 8px 20px;
+}

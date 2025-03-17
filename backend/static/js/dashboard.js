@@ -30,7 +30,7 @@ async function fetch_candidates() {
 
         if (!response.ok) throw new Error(data.error || "Failed to Vote.");
 
-        alert(data.message);
+        alert(data);
 
     } catch (error) {
         console.error("Error voting:", error);

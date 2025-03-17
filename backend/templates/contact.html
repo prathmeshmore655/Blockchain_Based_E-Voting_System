@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Us | Secure E-Voting</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/contact.css">
+</head>
+<body>
+
+    <!-- Background Image Container -->
+    <div class="background-container">
+        <div class="overlay">
+
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">🗳 Secure E-Voting</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="/home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/elections">Elections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/vote">Vote</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/working">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <div class="contact-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center text-white">
+                    <h2 class="fw-bold">Get in Touch</h2>
+                    <p class="lead">Have questions or concerns? Contact us using the form below or reach out via email or phone.</p>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <!-- Contact Info -->
+                <div class="col-md-5 text-white">
+                    <h4 class="fw-bold">📍 Our Office</h4>
+                    <p>123 Democracy Street, Washington, D.C.</p>
+
+                    <h4 class="fw-bold">📧 Email</h4>
+                    <p>support@securevoting.com</p>
+
+                    <h4 class="fw-bold">📞 Phone</h4>
+                    <p>+1 (555) 123-4567</p>
+
+                    <h4 class="fw-bold">🕒 Working Hours</h4>
+                    <p>Mon - Fri: 9 AM - 6 PM</p>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-md-7">
+                    <div class="card shadow p-4">
+                        <h4 class="fw-bold text-center">Send Us a Message</h4>
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="Write your message" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5 text-white">
+        <p>&copy; 2025 Secure E-Voting. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
