@@ -4,6 +4,7 @@ import json
 from django.contrib.auth import authenticate, login
 
 
+
 def login_page(request) : 
 
     return render (request , 'login.html')
@@ -56,12 +57,19 @@ def user_login (request)  :
 
         username = request.POST.get('username') 
         password = request.POST.get('password')
-        # voter_no = data.get('voter_no')
+        voter_no = request.POST.get('voter_no')
 
         user = authenticate(username = username , password = password )
-        # vote = Voters_Table.objects.get( card_no  = voter_no)
+
+        try :
+
+          vote = Voter.objects.get( voter_id = voter_no)
+
+        except : 
+             
+          return render(request , 'login.html' , {"message" : "Enter valid Voter ID"}  )
         
-        if user:
+        if user and vote:
                 
                 login(request, user)
 
@@ -70,5 +78,5 @@ def user_login (request)  :
                 return redirect('home_page')
         else : 
 
-            return (request , {"message" : "Enter Valid Credentials"} )
+            return render(request , 'login.html' , {"message" : "Enter valid credentials"}  )
 

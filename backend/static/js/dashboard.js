@@ -38,70 +38,76 @@ async function fetch_candidates() {
 }
 
 
-fetch_candidates(0) ; 
 
 
- 
+document.addEventListener("DOMContentLoaded", async function () {
+    const csrfToken = getCSRFToken();
 
+    try {
+        // Fetch votes data (which already includes candidate names)
+        const voteResponse = await fetch("http://localhost:8000/Blockchain/fetch-votes", {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken
+            }
+        });
 
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Data
-    const candidates = ["Candidate A", "Candidate B", "Candidate C"];
-    const votes = [450, 300, 250];
-    const colors = ["#007bff", "#28a745", "#ffc107"];
-
-    // Line Chart
-    new Chart(document.getElementById("lineChart"), {
-        type: "line",
-        data: {
-            labels: candidates,
-            datasets: [{
-                label: "Votes Over Time",
-                data: votes,
-                borderColor: "#007bff",
-                fill: false,
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
+        if (!voteResponse.ok) {
+            throw new Error("Failed to fetch votes data");
         }
-    });
 
-    // Bar Chart
-    new Chart(document.getElementById("barChart"), {
-        type: "bar",
-        data: {
-            labels: candidates,
-            datasets: [{
-                label: "Vote Count",
-                data: votes,
-                backgroundColor: colors
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
+        const votesData = await voteResponse.json();
 
-    // Pie Chart
-    new Chart(document.getElementById("pieChart"), {
-        type: "pie",
-        data: {
-            labels: candidates,
-            datasets: [{
-                data: votes,
-                backgroundColor: colors
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
+        console.log("data :", votesData);
+
+        // Extract candidate names and votes
+        const candidates = votesData.candidates.map(candidate => candidate.name);
+        const votes = votesData.candidates.map(candidate => candidate.votes);
+        const colors = ["#007bff", "#28a745", "#ffc107", "#dc3545", "#6f42c1"]; // Extend for more candidates
+
+
+        document.getElementById('participation').value = votesData.defined.participation ; 
+        document.getElementById('t_voters').value = votesData.defined.total_voters ; 
+        document.getElementById('options').value = votesData.defined.options ; 
+
+        // Function to create a chart
+        function createChart(ctx, type, labels, datasetLabel, datasetData, datasetColors) {
+            new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: datasetLabel,
+                        data: datasetData,
+                        backgroundColor: datasetColors,
+                        borderColor: type === "line" ? "#007bff" : datasetColors,
+                        fill: type === "line" ? false : true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            ticks: {
+                                precision: 0, // Ensures whole numbers only
+                                stepSize: 1 // Ensures increments of 1
+                            }
+                        }
+                    }
+                }
+            });
         }
-    });
+
+        // Initialize charts
+        createChart(document.getElementById("lineChart"), "line", candidates, "Votes Over Time", votes, colors);
+        createChart(document.getElementById("barChart"), "bar", candidates, "Vote Count", votes, colors);
+        createChart(document.getElementById("pieChart"), "pie", candidates, "Vote Share", votes, colors);
+
+    } catch (error) {
+        console.error("Error loading vote data:", error);
+    }
 });

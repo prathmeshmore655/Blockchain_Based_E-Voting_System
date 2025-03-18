@@ -1,19 +1,107 @@
+/* Background Styling */
 body {
-    background: #d3d9d7;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Glassmorphism Login Box */
 .login-box {
-    width: 400px;
-    background: white;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: center;
+}
+
+.login-box h2 {
+    font-weight: bold;
+    color: #fff;
+}
+
+.login-box p {
+    font-size: 14px;
+    color: #ddd;
+}
+
+/* Input Field Styling */
+.input-group {
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    display: flex;
+    align-items: center;
 }
 
 .input-group-text {
-    background-color: #f8f9fa;
+    background: transparent;
+    border: none;
+    color: white;
 }
 
-.alert {
+.form-control {
+    background: transparent;
+    border: none;
+    color: white;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-control:focus {
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    color: white;
+}
+
+/* Button Styling */
+.btn-primary {
+    background: #3498db;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+}
+
+/* Error Message */
+#error-message {
+    display: none;
+    background: rgba(255, 0, 0, 0.2);
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
     text-align: center;
-    font-size: 14px;
+}
+
+/* Signup Link */
+.login-box a {
+    color: #f1c40f;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.login-box a:hover {
+    color: #e67e22;
+}
+
+
+.container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

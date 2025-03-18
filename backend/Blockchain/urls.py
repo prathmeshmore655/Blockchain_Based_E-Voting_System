@@ -5,6 +5,6 @@ from .views import *
 urlpatterns = [
     path('blockchain-api' , BlockchainAPI.as_view() ),
     path('fetch-candidates' , CandidatesAPI.as_view()),
-    # path('fetch-candidates-blockchain' , )
+    path('fetch-votes' , VoteAPI.as_view() ),
     
 ]

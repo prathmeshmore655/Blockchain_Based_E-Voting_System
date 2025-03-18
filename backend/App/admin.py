@@ -36,13 +36,15 @@ class VotersModel (admin.ModelAdmin) :
     list_display = [
         "user",
         "voter_id",
-        "created_at"
+        "created_at",
+        "is_voted"
     ]
 
     search_fields = [
         "user",
         "voter_id",
-        "created_at"
+        "created_at",
+        "is_voted"
     ]
     
 

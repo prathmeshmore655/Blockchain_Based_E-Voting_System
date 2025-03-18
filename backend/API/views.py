@@ -21,12 +21,10 @@ import json
 
 class CandidatesAPI (APIView) : 
 
+
+    permission_classes = [AllowAny]
+
     def get(self, request):
-
-
         data = CandidateRegistration.objects.all()
-
-        print("data" , data)
-
         s_data = CandidateSerializers(data, many=True)
-        return Response(s_data.data, status=status.HTTP_200_OK)
+        return JsonResponse(s_data.data, safe=False)

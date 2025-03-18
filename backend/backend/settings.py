@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',  
-    'App'
+    'App',
 ]
 
 MIDDLEWARE = [
@@ -151,6 +151,8 @@ REST_FRAMEWORK = {
 
 
 
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SAMESITE = "Lax"  # or "None" if different origins
 SESSION_COOKIE_SECURE = False  # True for HTTPS
 SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript from accessing it

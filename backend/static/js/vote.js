@@ -1,9 +1,14 @@
- // Get CSRF Token from cookies
- const getCSRFToken = () => {
-    const cookies = document.cookie.split("; ");
-    const csrfCookie = cookies.find(row => row.startsWith("csrftoken="));
-    return csrfCookie ? csrfCookie.split("=")[1] : "";
-};
+function getCSRFToken() {
+    let cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.startsWith('csrftoken=')) {
+            return cookie.split('=')[1];
+        }
+    }
+    return '';
+}
+
 
 const csrfToken = getCSRFToken();
 console.log("CSRF Token:", csrfToken);
@@ -20,12 +25,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Function to fetch candidates from API
     async function fetchCandidates() {
-        try {
-            const response = await fetch("http://localhost:8000/API/get-candidates", {
-                method: "GET",
-                credentials: "include",
-                headers: { "Content-Type": "application/json" }
-            });
+            try {
+                const response = await fetch("http://localhost:8000/API/get-candidates", {
+                    method: "GET",
+                    credentials: "include",
+                    headers: { "Content-Type": "application/json" , 
+                        "X-CSRFToken": csrfToken
+                    }
+                });
 
             if (!response.ok) throw new Error("Failed to fetch candidates.");
 

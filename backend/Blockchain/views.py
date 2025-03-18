@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .smart_contracts.utils import add_candidate, get_votes_by_candidate, vote
+from .smart_contracts.utils import add_candidate, get_votes_by_candidate, vote , get_candidate
 from web3 import Web3
 from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt
@@ -115,3 +115,57 @@ class CandidatesAPI(APIView) :
         s_data = CandidateSerializer( data , many = True)
 
         return JsonResponse(s_data.data , safe=False , status = status.HTTP_200_OK)
+    
+
+
+
+class VoteAPI (APIView) : 
+
+    def get (self , request ) :
+
+        result = []
+
+        count = CandidateRegistration.objects.all().count()
+
+        is_vote = Voter.objects.filter(is_voted = True).count()
+        total_is_vote = Voter.objects.all().count()
+
+        percentage = (is_vote/total_is_vote)*100
+        
+
+        for n in range(0 , count , 1) : 
+            
+            candidate_id = int(n)  # Ensure it's an integer
+            
+            name_count = get_candidate(candidate_id)
+
+            votes_count = get_votes_by_candidate(candidate_id)
+
+            c_id = votes_count.get('candidate_id')
+            name = name_count.get('votes')
+            votes = votes_count.get('votes')
+            
+
+
+            result.append({
+                        
+                        "candidate_id" :c_id ,
+                        "name" :  name ,
+                        "votes" :  votes ,
+                     
+                        
+                        })
+
+
+        
+
+        return Response({
+                    "candidates": result,  
+                    "defined": {
+                        "participation": percentage,
+                        "total_voters": total_is_vote,
+                        "options": count
+                    }
+                }, status=status.HTTP_200_OK)
+
+    

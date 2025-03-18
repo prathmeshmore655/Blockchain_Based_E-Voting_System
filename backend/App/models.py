@@ -31,4 +31,6 @@ class Voter(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="voter_profile")
     voter_id = models.CharField(max_length=100, unique=True , default="none")  
-    created_at = models.DateTimeField(auto_now_add=True)  
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_voted = models.BooleanField(default=False)  
+

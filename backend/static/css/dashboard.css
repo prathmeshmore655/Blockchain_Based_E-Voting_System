@@ -76,6 +76,15 @@ canvas {
 
     color: white;
     transition: 100ms;
+    
+}
+
+.nav{
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
 }
 
 
