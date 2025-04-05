@@ -100,8 +100,7 @@ async function Vote_candidate(candidate_id) {
 
     voter_id = document.getElementById('user_id').value ; 
     try {
-        const csrfToken = getCSRFToken(); // Get CSRF token from cookies
-        console.log("CSRF Token:", csrfToken); // Debugging
+        console.log("updated CSRF Token:", csrfToken); // Debugging
 
         const response = await fetch("http://localhost:8000/Blockchain/blockchain-api", {
             method: "POST",

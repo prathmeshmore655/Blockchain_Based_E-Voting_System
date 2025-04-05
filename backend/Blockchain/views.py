@@ -87,8 +87,13 @@ class BlockchainAPI(APIView):
                 # Fetch voter's Ethereum account
                 eth_account = EthereumAccount.objects.get(user_id=voter_id)
 
+                print("l_user ::::" , request.user)
+
                 # Ensure voter Ethereum address matches
-                voter_address = request.user.ethereumaccount.eth_address
+                voter_add = EthereumAccount.objects.get(user = voter_id)
+                
+                voter_address = voter_add.eth_address
+                
                 if voter_address.lower() != eth_account.eth_address.lower():
                     return Response({"error": "Voter Ethereum account mismatch"}, status=400)
 
@@ -191,7 +196,14 @@ class VoteAPI (APIView) :
         is_vote = Voter.objects.filter(is_voted = True).count()
         total_is_vote = Voter.objects.all().count()
 
-        percentage = (is_vote/total_is_vote)*100
+
+        try : 
+
+            percentage = (is_vote/total_is_vote)*100
+        
+        except :
+
+            percentage = 0
 
 
         names = list(n_can.values_list("name", flat=True))
