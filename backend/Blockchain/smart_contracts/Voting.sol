@@ -57,4 +57,30 @@ contract Voting {
         require(voters[_voter].hasVoted, "Voter has not voted yet.");
         return voters[_voter].voterId;
     }
+
+    // Get all candidate names
+    function getCandidates() public view returns (string[] memory) {
+        string[] memory candidateNames = new string[](candidatesCount);
+        for (uint i = 0; i < candidatesCount; i++) {
+            candidateNames[i] = candidates[i].name;
+        }
+        return candidateNames;
+    }
+
+    // Find candidate ID by name
+    function getCandidateIdByName(string memory _name) public view returns (uint) {
+        for (uint i = 0; i < candidatesCount; i++) {
+            if (keccak256(abi.encodePacked(candidates[i].name)) == keccak256(abi.encodePacked(_name))) {
+                return i;
+            }
+        }
+        revert("Candidate not found");
+    }
+
+
+    function hasVoted(address voterAddress) public view returns (bool) {
+    return voters[voterAddress].hasVoted;
+    }
+
+
 }

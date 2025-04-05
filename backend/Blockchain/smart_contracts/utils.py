@@ -3,7 +3,7 @@ import json
 import os
 
 # Connect to Ethereum (Ganache or Infura)
-ganache_url = "http://127.0.0.1:8545"  # Update if using another RPC provider
+ganache_url = "http://127.0.0.1:7545"  # Update if using another RPC provider
 w3 = Web3(Web3.HTTPProvider(ganache_url))
 
 if not w3.is_connected():
@@ -37,6 +37,7 @@ def vote(candidate_id, voter_id, account):
     """Cast a vote for a candidate with voter ID."""
     tx_hash = contract.functions.vote(candidate_id, voter_id).transact({"from": account})
     w3.eth.wait_for_transaction_receipt(tx_hash)
+
     return f"✅ Vote casted for candidate {candidate_id} by voter {voter_id}!"
 
 
@@ -57,10 +58,22 @@ def get_results():
 
 
 ### 🗳️ Get Candidate Details ###
-def get_candidate(candidate_id):
+def get_candidate(name):
     """Retrieve candidate details by ID."""
-    candidate = contract.functions.candidates(candidate_id).call()
-    return {"id": candidate_id, "name": candidate[0], "votes": candidate[1]}
+
+    candidate_id = get_candidate_id(name)
+
+    if candidate_id is not None : 
+        
+        candidate = contract.functions.candidates(candidate_id).call()
+
+        print("whole data " , candidate)
+
+        return {"id": candidate_id , "name": candidate[1], "votes": candidate[2]}
+
+    else:
+
+        return ("No candidate exists")
 
 
 ### 🗳️ Check if Voter Has Voted ###
@@ -87,5 +100,24 @@ def get_votes_by_candidate(candidate_id):
         return {"error": str(e)}
     
 
+# c_id , v_id , account
+
+def get_candidate_id(name):
+    """Fetch candidate ID by name from blockchain"""
+    candidates = contract.functions.getCandidates().call()  # Get all candidates from blockchain
+    
+    for idx, candidate in enumerate(candidates):
+        if candidate == name:
+
+            print(idx)
+
+            return idx  # Return the correct ID
+
+    
+    print("none")
+    
+    return None  # Candidate not found
 
 
+
+get_candidate_id("Narendra Modi")

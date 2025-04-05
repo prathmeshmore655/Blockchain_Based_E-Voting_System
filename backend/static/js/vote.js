@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <button class="btn btn-info btn-sm" onclick="showCandidateDetails(${index})">Info</button>
                 </td>
                 <td>
-                    <button class="btn btn-primary btn-sm" onclick="Vote_candidate(${candidate.candidate_id})">Vote</button>
+                    <button class="btn btn-primary btn-sm" onclick="Vote_candidate('${candidate.name}')">Vote</button>
 
                 </td>
             `;

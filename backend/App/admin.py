@@ -46,8 +46,27 @@ class VotersModel (admin.ModelAdmin) :
         "created_at",
         "is_voted"
     ]
+
+
+
+class EtereumModel ( admin.ModelAdmin ) : 
+
+
+    list_display = [
+
+        "user" ,
+        "eth_private_key" ,
+        "eth_address" ,
+    ]
+
+    search_fields = [
+        "user" ,
+        "eth_private_key" ,
+        "eth_address" ,
+    ]
     
 
 
 admin.site.register(CandidateRegistration , CandidateModel  )
 admin.site.register(Voter , VotersModel)
+admin.site.register( EthereumAccount , EtereumModel )

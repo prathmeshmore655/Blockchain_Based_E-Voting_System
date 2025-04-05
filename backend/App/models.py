@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
+from django.conf import settings
 
 # Create your models here.
 
@@ -29,8 +30,15 @@ class CandidateRegistration(models.Model):
 
 class Voter(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="voter_profile")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="voter_profile")
     voter_id = models.CharField(max_length=100, unique=True , default="none")  
     created_at = models.DateTimeField(auto_now_add=True)
     is_voted = models.BooleanField(default=False)  
 
+
+
+class EthereumAccount(models.Model):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Relationship stays
+    eth_private_key = models.CharField(max_length=255)
+    eth_address = models.CharField(max_length=42, unique=True)
