@@ -121,5 +121,6 @@ async function Vote_candidate(candidate_id) {
 
     } catch (error) {
         console.error("Error voting:", error);
+        alert(error);
     }
 }
