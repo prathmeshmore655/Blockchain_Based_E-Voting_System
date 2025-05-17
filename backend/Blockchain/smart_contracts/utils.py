@@ -3,7 +3,7 @@ import json
 import os
 
 # Connect to Ethereum (Ganache or Infura)
-ganache_url = "http://127.0.0.1:7545"  # Update if using another RPC provider
+ganache_url = "https://ganache-docker-production.up.railway.app"  # Update if using another RPC provider
 w3 = Web3(Web3.HTTPProvider(ganache_url))
 
 if not w3.is_connected():

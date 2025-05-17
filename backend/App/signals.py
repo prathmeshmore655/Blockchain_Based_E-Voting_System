@@ -9,11 +9,11 @@ import requests
 from .models import EthereumAccount
 
 # Connect to Ganache (or another Ethereum provider)
-w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
+w3 = Web3(Web3.HTTPProvider("https://ganache-docker-production.up.railway.app"))
 
 # Set funder account (for sending ETH to new voter accounts)
 FUNDER_ACCOUNT = w3.eth.accounts[0]  # First Ganache account
-FUNDER_PRIVATE_KEY = "0x8bef2b30d28b30c09a1ed04072f0169c5789ce59a5af23ff82cc1e8aeb29c4b2"  # Replace with actual private key
+FUNDER_PRIVATE_KEY = "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d"  # Replace with actual private key
 
 # Blockchain API URL (update if needed)
 BLOCKCHAIN_API_URL = "http://localhost:8000/Blockchain/blockchain-api"
@@ -25,7 +25,7 @@ def add_candidate_to_blockchain(sender, instance, created, **kwargs):
         data = {
             "action": "add_candidate",
             "name": instance.name,
-            "account": "0xF86e7Da91C17541Ab36a082346349702ba6070A1",  # Replace with actual wallet logic
+            "account": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",  # Replace with actual wallet logic
         }
 
         headers = {"Content-Type": "application/json"}
