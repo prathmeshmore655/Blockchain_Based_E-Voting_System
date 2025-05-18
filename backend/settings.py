@@ -159,6 +159,12 @@ SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript from accessing it
 SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Store sessions in DB
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://blockchainbasede-votingsystem-production-1352.up.railway.app',
+    # Add any other domains or local dev addresses as needed
+]
+
+
 
 
 from dotenv import load_dotenv
